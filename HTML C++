@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="hy">
+    <head>
+        <meta charset="UTF-8">
+        <title><AutoMeta Genesis transformers portal</title>
+            <h1>AutoMeta Genesis</h1>
+            <style>
+            /* kayqi guynery yev <vojy */
+            body {
+                background-color: 
+                #0b0d17; /* mug tiezerakan guyn */ color:  white;
+                font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-align: center;
+                nargin: 0;
+                radding: 0;
+            }
+            .transformer-card { 
+                border:  2px solid #333;
+                border-radius: 15px;
+                padding: 20px;
+                display: inline-block;
+                transition:  0.5s; /*
+                animaciayi aragutyun */
+                background:  #1a1a1a;
+            }
+            /* efekt, erb mkniky pahum es vran *
+            .transformer-card:hover {
+                border-color: #00d4ff;
+                transform: scale(1.1); /*
+                 metsanum e */
+                 box-shadow: 0 0 20px;
+                 #00d4ff;
+            }
+            button {
+                background-color: 
+                #d40000;
+                color:  white;
+                border:  nome;
+                padding: 10px 20px;
+                cursor:  pointer;
+                font-weight: bold;
+                margin-top: 15px;
+            }
+            </style>
+            </head>
+            <body>
+                <header>
+                    <h1> transformers Universe</h1>
+                </header>
+                <div class="center">
+                    <h2>Bri galust kibertron</h2>
+                    <p>Aystex duq ktesbeq,te inchpes en  meqenanery darnum robotner:</p>
+                    <div
+                    class="transformer-card">
+                    <h3>Optimus Prime</h3>
+                    <p>Katgavijak'Avtobotneri arajnord</p>
+                    <p>guynery karmir yev kapuyt</p>
+                    <button onclick="transform()">
+                        transformacia</button>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function transform() {
+                    alert(aystex kavelacnem Animation)");
+                }
+                <script>
+                    </body>
+                    </html>
