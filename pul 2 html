@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Validation</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; background-color: #f4f4f4; }
+        .login-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 300px; }
+        .form-group { margin-bottom: 15px; position: relative; }
+        input { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .error-msg { color: red; font-size: 12px; margin-top: 5px; display: none; }
+        input.invalid { border-color: red; }
+        .toggle-btn { position: absolute; right: 10px; top: 10px; cursor: pointer; user-select: none; }
+        button { width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h2>Մուտք</h2>
+    <div class="form-group">
+        <input type="email" id="email" placeholder="Էլ. հասցե">
+        <div id="emailError" class="error-msg">Լրացրեք էլ. հասցեն</div>
+    </div>
+    <div class="form-group">
+        <input type="password" id="password" placeholder="Գաղտնաբառ">
+        <span id="togglePassword" class="toggle-btn">👁️</span>
+        <div id="passError" class="error-msg">Գաղտնաբառը պարտադիր է</div>
+    </div>
+    <button id="loginBtn">Շարունակել</button>
+</div>
+
+<script>
+    const loginBtn = document.getElementById('loginBtn');
+    const emailInput = document.getElementById('email');
+    const passInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+
+    togglePassword.addEventListener('click', function () {
+        const isPassword = passInput.getAttribute('type') === 'password';
+        passInput.setAttribute('type', isPassword ? 'text' : 'password');
+        this.textContent = isPassword ? '🙈' : '👁️';
+    });
+
+    loginBtn.addEventListener('click', function () {
+        let isValid = true;
+
+        if (emailInput.value.trim() === "") {
+            showError(emailInput, 'emailError');
+            isValid = false;
+        } else {
+            hideError(emailInput, 'emailError');
+        }
+
+        if (passInput.value.trim() === "") {
+            showError(passInput, 'passError');
+            isValid = false;
+        } else {
+            hideError(passInput, 'passError');
+        }
+
+        if (isValid) {
+            window.location.href = "dashboard.html";
+        }
+    });
+
+    function showError(input, errorId) {
+        input.classList.add('invalid');
+        document.getElementById(errorId).style.display = 'block';
+    }
+
+    function hideError(input, errorId) {
+        input.classList.remove('invalid');
+        document.getElementById(errorId).style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
