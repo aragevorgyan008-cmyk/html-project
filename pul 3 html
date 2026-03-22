@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <title>LocalStorage</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 300px; text-align: center; }
+        .hidden { display: none; }
+        input { padding: 8px; margin-bottom: 10px; width: 80%; }
+        button { padding: 8px 15px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
+        .logout-btn { background: #dc3545; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="loginPage" class="card">
+        <h2>Մուտք</h2>
+        <input type="text" id="usernameInput" placeholder="Անուն">
+        <button onclick="login()">Մուտք գործել</button>
+    </div>
+
+    <div id="welcomePage" class="card hidden">
+        <h2 id="welcomeMessage"></h2>
+        <button class="logout-btn" onclick="logout()">Դուրս գալ</button>
+    </div>
+
+    <script>
+        window.onload = checkAuth;
+
+        function login() {
+            const name = document.getElementById('usernameInput').value;
+            if (name.trim() !== "") {
+                localStorage.setItem('savedUserName', name);
+                checkAuth();
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('savedUserName');
+            checkAuth();
+        }
+
+        function checkAuth() {
+            const user = localStorage.getItem('savedUserName');
+            const loginDiv = document.getElementById('loginPage');
+            const welcomeDiv = document.getElementById('welcomePage');
+            const message = document.getElementById('welcomeMessage');
+
+            if (user) {
+                loginDiv.classList.add('hidden');
+                welcomeDiv.classList.remove('hidden');
+                message.textContent = `Բարի գալուստ, ${user}`;
+            } else {
+                loginDiv.classList.remove('hidden');
+                welcomeDiv.classList.add('hidden');
+                document.getElementById('usernameInput').value = "";
+            }
+        }
+    </script>
+</body>
+</html>
