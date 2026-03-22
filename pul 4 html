@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 50px; }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin-top: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        button:disabled { background-color: #ccc; cursor: not-allowed; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Գրանցել նոր օգտատեր</h2>
+    
+    <button id="submitBtn">Ուղարկել POST հարցում</button>
+    <div id="loader" class="spinner"></div>
+    <p id="result"></p>
+
+    <script>
+        const btn = document.getElementById('submitBtn');
+        const loader = document.getElementById('loader');
+        const result = document.getElementById('result');
+
+        async function createUser() {
+            btn.disabled = true;
+            loader.style.display = 'block';
+            result.textContent = '';
+            result.style.color = 'green';
+
+            try {
+                const response = await fetch('https://reqres.in/api/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: "Անուն", job: "Ծրագրավորող" })
+                });
+
+                if (!response.ok) throw new Error();
+
+                const data = await response.json();
+                result.textContent = `Հաջողություն: ID ${data.id}`;
+            } catch (error) {
+                result.textContent = "Սխալ տեղի ունեցավ:";
+                result.style.color = 'red';
+            } finally {
+                btn.disabled = false;
+                loader.style.display = 'none';
+            }
+        }
+
+        btn
